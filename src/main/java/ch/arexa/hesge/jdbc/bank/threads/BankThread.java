@@ -2,8 +2,6 @@ package ch.arexa.hesge.jdbc.bank.threads;
 
 import ch.arexa.hesge.jdbc.bank.dao.TransferOrderDA;
 
-import java.sql.SQLException;
-
 public class BankThread extends Thread{
 
     TransferOrderDA transferDAO = new TransferOrderDA();
@@ -11,6 +9,8 @@ public class BankThread extends Thread{
     public void run(){
 
         while(true){
+
+            System.out.println("Nouvelle exécution");
 
             try{
                 transferDAO.checkTransferOrders();

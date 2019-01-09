@@ -20,13 +20,7 @@ public class TransferOrder {
 
     TransferOrderDA dao = new TransferOrderDA();
 
-    public TransferOrder(String accountRef1, String accountRef2, Double amount, Date executionDate, Date operationDate) {
-        this.accountRef1 = accountRef1;
-        this.accountRef2 = accountRef2;
-        this.amount = amount;
-        this.executionDate = executionDate;
-        this.operationDate = operationDate;
-        this.status = Status.OPEN;
+    public TransferOrder() {
     }
 
     public long getIdTransferOrder() {
@@ -140,13 +134,14 @@ public class TransferOrder {
 
     @Override
     public String toString() {
-        return "ch.arexa.hesge.jdbc.bank.TransferOrder{" +
+        return "TransferOrder{" +
                 "idTransferOrder=" + idTransferOrder +
                 ", accountRef1='" + accountRef1 + '\'' +
                 ", accountRef2='" + accountRef2 + '\'' +
                 ", amount=" + amount +
                 ", executionDate=" + executionDate +
                 ", operationDate=" + operationDate +
+                ", status=" + status +
                 '}';
     }
 }

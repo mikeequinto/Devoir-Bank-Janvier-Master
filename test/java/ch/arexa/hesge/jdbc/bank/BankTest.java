@@ -165,25 +165,25 @@ public class BankTest extends DBTest {
 
         //TransferOrder
         Date date = new Date();
-        TransferOrder to = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 100.0, date, date);
+        TransferOrder to = new TransferOrder();to.setAccountRef1(a.getAccountRef());to.setAccountRef2(a2.getAccountRef());
+                            to.setAmount(10.0);to.setExecutionDate(date);to.setOperationDate(date);to.setStatus(Status.OPEN);
         to.persist();
     }
 
     @Test
     public void transferTestAlimentation() throws SQLException, java.text.ParseException{
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-        Date operationDate = dateFormat.parse("06/01/2019 17:20:00");
-        Date date1 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date2 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date3 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date4 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date5 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date6 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date7 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date8 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date9 = dateFormat.parse("06/01/2019 17:20:00");
-        Date date10 = dateFormat.parse("06/01/2019 17:20:00");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date1 = dateFormat.parse("09/01/2019");
+        Date date2 = dateFormat.parse("09/01/2019");
+        Date date3 = dateFormat.parse("09/01/2019");
+        Date date4 = dateFormat.parse("09/01/2019");
+        Date date5 = dateFormat.parse("09/01/2019");
+        Date date6 = dateFormat.parse("09/01/2019");
+        Date date7 = dateFormat.parse("10/01/2019");
+        Date date8 = dateFormat.parse("10/01/2019");
+        Date date9 = dateFormat.parse("10/01/2019");
+        Date date10 = dateFormat.parse("10/01/2019");
 
 
         //Client 1
@@ -205,16 +205,26 @@ public class BankTest extends DBTest {
 
         //TransferOrder
         Date date = new Date();
-        TransferOrder to1 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date1, operationDate);
-        TransferOrder to2 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date2, operationDate);
-        TransferOrder to3 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date3, operationDate);
-        TransferOrder to4 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date4, operationDate);
-        TransferOrder to5 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date5, operationDate);
-        TransferOrder to6 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date6, operationDate);
-        TransferOrder to7 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date7, operationDate);
-        TransferOrder to8 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date8, operationDate);
-        TransferOrder to9 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date9, operationDate);
-        TransferOrder to10 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date10, operationDate);
+        TransferOrder to1 = new TransferOrder();to1.setAccountRef1(a.getAccountRef());to1.setAccountRef2(a2.getAccountRef());
+                            to1.setAmount(10.0);to1.setExecutionDate(date1);to1.setOperationDate(date);to1.setStatus(Status.OPEN);
+        TransferOrder to2 = new TransferOrder();to2.setAccountRef1(a.getAccountRef());to2.setAccountRef2(a2.getAccountRef());
+                            to2.setAmount(10.0);to2.setExecutionDate(date2);to2.setOperationDate(date);to2.setStatus(Status.OPEN);
+        TransferOrder to3 = new TransferOrder();to3.setAccountRef1(a.getAccountRef());to3.setAccountRef2(a2.getAccountRef());
+                            to3.setAmount(10.0);to3.setExecutionDate(date3);to3.setOperationDate(date);to3.setStatus(Status.OPEN);
+        TransferOrder to4 = new TransferOrder();to4.setAccountRef1(a.getAccountRef());to4.setAccountRef2(a2.getAccountRef());
+                            to4.setAmount(10.0);to4.setExecutionDate(date4);to4.setOperationDate(date);to4.setStatus(Status.OPEN);
+        TransferOrder to5 = new TransferOrder();to5.setAccountRef1(a.getAccountRef());to5.setAccountRef2(a2.getAccountRef());
+                            to5.setAmount(10.0);to5.setExecutionDate(date5);to5.setOperationDate(date);to5.setStatus(Status.OPEN);
+        TransferOrder to6 = new TransferOrder();to6.setAccountRef1(a.getAccountRef());to6.setAccountRef2(a2.getAccountRef());
+                            to6.setAmount(10.0);to6.setExecutionDate(date6);to6.setOperationDate(date);to6.setStatus(Status.OPEN);
+        TransferOrder to7 = new TransferOrder();to7.setAccountRef1(a.getAccountRef());to7.setAccountRef2(a2.getAccountRef());
+                            to7.setAmount(10.0);to7.setExecutionDate(date7);to7.setOperationDate(date);to7.setStatus(Status.OPEN);
+        TransferOrder to8 = new TransferOrder();to8.setAccountRef1(a.getAccountRef());to8.setAccountRef2(a2.getAccountRef());
+                            to8.setAmount(10.0);to8.setExecutionDate(date8);to8.setOperationDate(date);to8.setStatus(Status.OPEN);
+        TransferOrder to9 = new TransferOrder();to9.setAccountRef1(a.getAccountRef());to9.setAccountRef2(a2.getAccountRef());
+                            to9.setAmount(10.0);to9.setExecutionDate(date9);to9.setOperationDate(date);to9.setStatus(Status.OPEN);
+        TransferOrder to10 = new TransferOrder();to10.setAccountRef1(a.getAccountRef());to10.setAccountRef2(a2.getAccountRef());
+                            to10.setAmount(10.0);to10.setExecutionDate(date10);to10.setOperationDate(date);to10.setStatus(Status.OPEN);
 
         to1.persist();
         to2.persist();
@@ -258,7 +268,8 @@ public class BankTest extends DBTest {
 
         //TransferOrder
         Date date = new Date();
-        TransferOrder to1 = new TransferOrder(a.getAccountRef(), a2.getAccountRef(), 10.0, date1, date);
+        TransferOrder to1 = new TransferOrder();to1.setAccountRef1(a.getAccountRef());to1.setAccountRef2(a2.getAccountRef());
+                            to1.setAmount(10.0);to1.setExecutionDate(date1);to1.setOperationDate(date);to1.setStatus(Status.OPEN);
         to1.persist();
 
         //to1.setStatus(Status.CLOSED);

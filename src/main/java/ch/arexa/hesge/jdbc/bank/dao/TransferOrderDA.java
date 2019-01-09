@@ -7,9 +7,11 @@ import ch.arexa.hesge.jdbc.bank.exceptions.AmountNotAvailableException;
 import ch.arexa.hesge.jdbc.bank.exceptions.ObjectNotFoundException;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 import static ch.arexa.hesge.jdbc.bank.helper.DateHelper.toSqlDate;
 
@@ -114,8 +116,21 @@ public class TransferOrderDA extends BankDA {
             rs = pStmt.executeQuery();
             while (rs.next()) {
 
-                TransferOrder to = new TransferOrder(rs.getString("accountRefSource"), rs.getString("accountRefTarget"), rs.getDouble("amount"), rs.getDate("executionDate"), rs.getDate("operationDate"));
+                TransferOrder to = new TransferOrder();
                 to.setIdTransferOrder(rs.getLong("idTransferOrder"));
+                to.setAccountRef1(rs.getString("accountRefSource"));
+                to.setAccountRef2(rs.getString("accountRefTarget"));
+                to.setAmount(rs.getDouble("amount"));
+                to.setExecutionDate(rs.getDate("executionDate"));
+                to.setOperationDate(rs.getDate("operationDate"));
+
+                String status = rs.getString("status");
+                if(status.equals("OPEN")){
+                    to.setStatus(Status.OPEN);
+                }else{
+                    to.setStatus(Status.CLOSED);
+                }
+
                 list.add(to);
 
             }
@@ -126,19 +141,31 @@ public class TransferOrderDA extends BankDA {
 
     }
 
-    public void checkTransferOrders() throws SQLException, AmountNotAvailableException{
+    public void checkTransferOrders() throws SQLException, AmountNotAvailableException, ParseException {
 
         List<TransferOrder> list = getTransferOrdersByDate();
 
-        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String currentDate = dateFormat.format(date);
 
-        for(TransferOrder to : list){
-            if(to.getExecutionDate() == currentDate && to.getStatus() == Status.OPEN){
+        int counter = 0;
+        int i = 0;
+
+        while(i < list.size() && counter < 3){
+            TransferOrder to = list.get(i);
+
+            if(to.getExecutionDate().toString().equals(currentDate) && to.getStatus() == Status.OPEN){
+                //Transfert
                 updateAccounts(to.getAccountRef1(), to.getAccountRef2(), to.getExecutionDate(), to.getAmount());
+                //On indique que le transferOrder a été fait (closed)
                 to.setStatus(Status.CLOSED);
+                to.update();
+                System.out.println(to);
+                counter = counter + 1;
             }
+            i++;
         }
-
     }
 
 }
